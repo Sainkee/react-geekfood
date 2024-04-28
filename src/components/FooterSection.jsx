@@ -3,7 +3,7 @@ export default function FooterSection() {
   console.log();
   return (
     <>
-      <div className="bg-neutral-800 py-10 mt-20  text-center">
+      <div className="bg-neutral-800 py-10 mt-20  text-center px-4">
         <p className="text-gray-500">{footer.desc}</p>
 
         <ul className="flex flex-row justify-center gap-2 lg:py-10 mt-5 lg:mt-0">
