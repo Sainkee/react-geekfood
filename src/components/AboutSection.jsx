@@ -4,7 +4,7 @@ export default function AboutSection() {
     <>
       <div className="flex flex-col lg:flex-row  mb-10 gap-10 justify-center items-center">
         <div className=" lg:w-1/2 w-full overflow-hidden rounded-md  ">
-          <img src={AboutImg} className=" hover:scale-105 ease-in-out duration-300" alt="House Img" />
+          <img src={AboutImg} className=" hover:scale-105 ease-in-out duration-300" alt="House Image" />
         </div>
         <div className="lg:w-1/2 w-full lg:justify-center  flex flex-col   ">
           <h2 className="text-3xl lg:4xl">
