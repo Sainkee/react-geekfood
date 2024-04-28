@@ -1,10 +1,17 @@
-import NavBar from "./components/NavBar/NavBar";
+import HeroSection from "./components/HeroSection";
+import NavBar from "./components/navBar";
+import AboutSection from "./components/AboutSection";
+
 function App() {
-  const navBarItems = ["Home", "Quote", "Resturants", "Foods", "Contact"];
   return (
     <>
-      <NavBar navBarItems={navBarItems} />
-      
+      <NavBar />
+
+      <div className="max-w-7xl mx-auto px-6">
+        <HeroSection />
+
+        <AboutSection />
+      </div>
     </>
   );
 }
