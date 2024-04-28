@@ -1,11 +1,11 @@
 export default function HeroSection() {
   return (
     <>
-     <div className="h-[90vh]">
+     <div className="h-[91vh] mb-20 md:mb-0">
      <div className="lg:pt-24 pt-10 flex flex-col lg:items-star   justify-center text-center lg:w-1/2   items-center">
-        <h1 className="text-6xl md:8xl lg:9xl tracking-wide font-semibold">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-wide font-semibold">
           Let us find your <br />
-          <span className=" bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent font-bold">
+          <span className=" bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent font-bold">
             favorite food !
           </span>
         </h1>
@@ -14,8 +14,8 @@ export default function HeroSection() {
           illo tenetur fuga ducimus numquam ea!
         </p>
       </div>
-      <div className="flex flex-col lg:flex-row  items-center justify-center text-center mt-10 gap-10 lg:w-1/2 ">
-        <a href="#" className="py-2 w-full px-3 rounded-md  bg-red-800">
+      <div className="flex flex-col lg:flex-row  items-center justify-center text-center mt-14 gap-10 lg:w-1/2 ">
+        <a href="#" className="py-2 w-full px-3 rounded-md  bg-gradient-to-r from-orange-500 to-orange-700">
           Search Now
         </a>
         <a
