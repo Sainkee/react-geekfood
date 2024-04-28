@@ -29,7 +29,10 @@ export default function NavBar() {
             </ul>
           </div>
           <div className="hidden lg:flex items-center">
-            <a href="#" className=" px-3 py-2 rounded-md bg-blue-500  hover:bg-blue-700 ">
+            <a
+              href="#"
+              className=" px-3 py-2 rounded-md bg-blue-500  hover:bg-blue-700 "
+            >
               Get started
             </a>
           </div>
@@ -41,8 +44,8 @@ export default function NavBar() {
           </div>
         </div>
         {windowOpen && (
-          <div className=" top-20  w-full bg-neutral-800 shadow-lg fixed right-0 shadow-neutral-800 py-10 z-50  flex flex-col justify-center items-center lg:hidden">
-            <ul >
+          <div className=" top-[4rem] w-full  bg-neutral-800 shadow-md fixed right-0 shadow-neutral-800 py-10 z-50  flex flex-col justify-center items-center lg:hidden">
+            <ul>
               {navItems.map((item, index) => (
                 <li
                   key={index}
@@ -53,7 +56,12 @@ export default function NavBar() {
                 </li>
               ))}
             </ul>
-            <a href="#" className="py-2 px-3 bg-blue-500 hover:bg-blue-700 rounded-md">Get Strarted</a>
+            <a
+              href="#"
+              className="py-2 px-3 bg-blue-500 hover:bg-blue-700 rounded-md"
+            >
+              Get Strarted
+            </a>
           </div>
         )}
       </div>
