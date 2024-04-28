@@ -19,7 +19,7 @@ export default function FooterSection() {
               key={index}
               className="hover:text-blue-500 border-2 p-2 hover:-translate-y-2 transition-all  border-orange-500 rounded-full"
             >
-              <span className="  cursor-pointer    text-lg text-orange-500">
+              <span className="  cursor-pointer    text-sm text-orange-500">
                 {icon.icon}
               </span>
             </li>
