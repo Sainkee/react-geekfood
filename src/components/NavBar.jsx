@@ -10,7 +10,7 @@ export default function NavBar() {
   return (
     <div className="backdrop-blur-md sticky top-0 z-50  py-3 border-b border-neutral-700/65   ">
       <div className="container px-4 mx-auto relative text-sm">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between ">
           <div className="flex flex-shrink-0 items-center">
             <img src={logo} alt="NavLogo" className="h-10 w-10 mr-2" />
             <span className="text-xl tracking-tight">GeekFood</span>
@@ -21,7 +21,7 @@ export default function NavBar() {
                 <li
                   key={index}
                   href={item.href}
-                  className="hover:text-blue-500"
+                  className="hover:text-blue-500 cursor-pointer"
                 >
                   {item.label}
                 </li>

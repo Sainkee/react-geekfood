@@ -8,8 +8,8 @@ export default function FooterSection() {
 
         <ul className="flex flex-row justify-center gap-2 lg:py-10 mt-5 lg:mt-0">
           {footer.footLinks.map((links, index) => (
-            <li key={index} className="hover:text-blue-500">
-              <span className="hover:text-blue-500 text-sm">{links.label}</span>
+            <li key={index} className="hover:text-blue-500 text-sm cursor-pointer">
+              {links.label}
             </li>
           ))}
         </ul>
