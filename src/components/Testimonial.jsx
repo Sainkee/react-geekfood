@@ -3,13 +3,16 @@ import { testimonial } from "../constants";
 export default function Testimonial() {
   return (
     <>
-      <div className="flex flex-wrap justify-center mt-20">
+      <div className="flex flex-wrap  justify-center mt-20">
         {testimonial.map((testimo, index) => (
-          <div key={index} className="w-full sm:w-1/2 lg:w-1/3 lg:px-4 py-2">
-            <div className=" bg-neutral-900 rounded-md p-6 text-md border border-neutral-800 font-thin">
+          <div
+            key={index}
+            className="w-full sm:w-1/2 lg:w-1/3 lg:px-4 p-2"
+          >
+            <div className=" bg-neutral-900 rounded-md p-6 text-md border gap-3 border-neutral-800 font-thin">
               <p> {testimo.text}</p>
             </div>
-            <div className="flex item-start mt-4 px-4">
+            <div className="flex item-start mt-4  px-4">
               <img
                 src={testimo.userImg}
                 alt=""
@@ -17,7 +20,9 @@ export default function Testimonial() {
               />
               <div>
                 <h6 className="font-bold">{testimo.userName}</h6>
-                <p className="text-xs italic font-normal">{testimo.userTitle}</p>
+                <p className="text-xs italic font-normal">
+                  {testimo.userTitle}
+                </p>
               </div>
             </div>
           </div>
