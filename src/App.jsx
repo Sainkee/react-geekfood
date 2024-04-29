@@ -8,9 +8,9 @@ function App() {
   return (
     <>
       <NavBar />
-
+      <HeroSection />
       <div className=" max-w-7xl mx-auto px-6">
-        <HeroSection />
+       
 
         <AboutSection />
         <Testimonial /> 
