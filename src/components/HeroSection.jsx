@@ -9,7 +9,7 @@ export default function HeroSection() {
         backgroundPosition: "center",
       }}
     >
-      <div className="h-[91vh] bg-black/50 mb-20 md:mb-0 ">
+      <div className="h-[91vh] bg-black/50 mb-20 md:mb-0 flex items-center ">
         <div className="lg:pt-24  max-w-7xl py-10 flex flex-col lg:items-star   justify-center text-center lg:w-1/2   items-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl tracking-wide font-semibold">
             Let us find your <br />
@@ -17,7 +17,7 @@ export default function HeroSection() {
               favorite food !
             </span>
           </h1>
-          <p className="mt-10 text-lg text-center max-w-4xl text-neutral-500 ">
+          <p className="mt-10 text-lg text-center max-w-4xl px-10 text-neutral-500 ">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
             illo tenetur fuga ducimus numquam ea!
           </p>
