@@ -29,7 +29,9 @@ export default function NavBar() {
                   key={index}
                   to={item.href}
                   className={({ isActive }) =>
-                    `py-4 ${isActive ? "text-red-500" : "hover:text-gray-500"} cursor-pointer`
+                    `py-4 ${
+                      isActive ? "text-red-500" : "hover:text-gray-500"
+                    } cursor-pointer`
                   }
                 >
                   {item.label}
@@ -54,25 +56,28 @@ export default function NavBar() {
           </div>
         </div>
         {windowOpen && (
-          <div className=" top-[4rem] w-full  bg-neutral-800 shadow-md fixed right-0 shadow-neutral-800 py-10 z-50  flex flex-col justify-center items-center lg:hidden">
-            <ul>
-              {navItems.map((item, index) => (
-                <NavLink
-                  key={index}
-                  to={item.href}
-                  className="hover:text-blue-500 py-4"
-                >
-                  {item.label}
-                </NavLink>
-              ))}
-            </ul>
+          <ul className=" top-[4rem] w-full  bg-neutral-800 shadow-md fixed right-0 shadow-neutral-800 py-10 z-50  flex flex-col justify-center items-center lg:hidden">
+            {navItems.map((item, index) => (
+              <NavLink
+                key={index}
+                to={item.href}
+                className={({ isActive }) =>
+                  `py-4 ${
+                    isActive ? "text-red-500" : "hover:text-gray-500"
+                  } cursor-pointer`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+
             <Link
               to="/"
               className="py-2 px-3 bg-blue-500 hover:bg-blue-700 rounded-md"
             >
               Get Strarted
             </Link>
-          </div>
+          </ul>
         )}
       </div>
     </div>

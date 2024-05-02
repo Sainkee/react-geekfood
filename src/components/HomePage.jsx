@@ -9,8 +9,10 @@ export default function HomePage() {
   return (
     <>
     <HeroSection />
-    <AboutSection />
+   <div className="w-[85vw] mx-auto">
+   <AboutSection />
     <Testimonial/>
+   </div>
     </>
 
   )
