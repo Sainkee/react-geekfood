@@ -2,6 +2,8 @@ import logo from "../assets/logo.svg";
 import { navItems } from "../constants";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
+
 export default function NavBar() {
   const [windowOpen, setWindowOpen] = useState(false);
   const handleClick = () => {
@@ -12,29 +14,37 @@ export default function NavBar() {
       <div className="container px-4 mx-auto relative text-sm">
         <div className="flex items-center justify-between ">
           <div className="flex flex-shrink-0 items-center">
-            <img src={logo} alt="NavLogo" className="h-10 w-10 mr-2" />
-            <span className="text-xl tracking-tight">GeekFood</span>
+            <Link to="home">
+              <img src={logo} alt="NavLogo" className="h-10 w-10 mr-2" />
+            </Link>
+            <Link to="home">
+              {" "}
+              <span className="text-xl tracking-tight">GeekFood</span>
+            </Link>
           </div>
           <div>
             <ul className="hidden  lg:flex ml-14 space-x-12 ">
               {navItems.map((item, index) => (
-                <li
+                <NavLink
                   key={index}
-                  href={item.href}
-                  className="hover:text-blue-500 cursor-pointer"
+                  to={item.href}
+                  className={({ isActive }) =>
+                    `py-4 ${isActive ? "text-red-500" : "hover:text-gray-500"} cursor-pointer`
+                  }
                 >
                   {item.label}
-                </li>
+                </NavLink>
               ))}
             </ul>
           </div>
           <div className="hidden lg:flex items-center">
-            <a
+            <Link
+              to="/"
               href="#"
               className=" px-3 py-2 rounded-md bg-blue-500  hover:bg-blue-700 "
             >
               Get started
-            </a>
+            </Link>
           </div>
           <div className=" lg:hidden md:flex flex-col flex-end  ">
             <button onClick={handleClick}>
@@ -47,21 +57,21 @@ export default function NavBar() {
           <div className=" top-[4rem] w-full  bg-neutral-800 shadow-md fixed right-0 shadow-neutral-800 py-10 z-50  flex flex-col justify-center items-center lg:hidden">
             <ul>
               {navItems.map((item, index) => (
-                <li
+                <NavLink
                   key={index}
-                  href={item.href}
+                  to={item.href}
                   className="hover:text-blue-500 py-4"
                 >
                   {item.label}
-                </li>
+                </NavLink>
               ))}
             </ul>
-            <a
-              href="#"
+            <Link
+              to="/"
               className="py-2 px-3 bg-blue-500 hover:bg-blue-700 rounded-md"
             >
               Get Strarted
-            </a>
+            </Link>
           </div>
         )}
       </div>

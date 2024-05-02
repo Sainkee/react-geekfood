@@ -1,4 +1,5 @@
 import AboutImg from "../assets/aboutImg.jpg";
+import { Link } from "react-router-dom";
 export default function AboutSection() {
   return (
     <>
@@ -18,12 +19,12 @@ export default function AboutSection() {
             quibusdam fugiat dicta.
           </p>
           <div className="mt-10">
-            <a
-              href=""
+            <Link 
+              to="/"
               className="bg-blue-500 px-3 py-2  rounded-md hover:bg-blue-700 "
             >
               Get In Touch
-            </a>
+            </Link>
           </div>
         </div>
       </div>
