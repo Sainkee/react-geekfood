@@ -2,7 +2,7 @@ import { Facebook, Twitter, Instagram, Github } from "lucide-react";
 import userImage from "../assets/user.jpg";
 
 export const navItems = [
-  { label: "Home", href: "home" },
+  { label: "Home", href: "/" },
   { label: "Qoute", href: "qoute" },
   // { label: "Resturants", href: "#" },
   // { label: "Foods", href: "#" },
