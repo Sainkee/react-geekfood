@@ -14,10 +14,10 @@ export default function NavBar() {
       <div className="container px-4 mx-auto relative text-sm">
         <div className="flex items-center justify-between ">
           <div className="flex flex-shrink-0 items-center">
-            <Link to="home">
+            <Link to="/">
               <img src={logo} alt="NavLogo" className="h-10 w-10 mr-2" />
             </Link>
-            <Link to="home">
+            <Link to="/">
               {" "}
               <span className="text-xl tracking-tight">GeekFood</span>
             </Link>
