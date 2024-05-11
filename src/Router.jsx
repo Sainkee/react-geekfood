@@ -2,6 +2,7 @@ import LayOut from "./components/LayOut.jsx";
 import Qoute from "./components/Qoute.jsx";
 import HomePage from "./components/HomePage.jsx";
 import { createBrowserRouter } from "react-router-dom";
+import Restaurent from "./components/Restaurent.jsx";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
 
       { path: "qoute", element: <Qoute /> },
+      { path: "restaurent", element: <Restaurent /> },
     ],
 
     errorElement: <h1>Not Found</h1>,
