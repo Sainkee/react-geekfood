@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export default function RestaurentCard(item) {
+ function RestaurentCard(item) {
   return (
     <div key={item.id}>
         <h1>{item.name}</h1>
     </div>
   )
 }
+
+export default memo(RestaurentCard)

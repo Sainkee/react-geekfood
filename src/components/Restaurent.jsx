@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import React, { useEffect, useState, useMemo, useCallback, memo } from "react";
 import axios from "axios";
 
-export default function Restaurant() {
+const Restaurant = () => {
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -88,4 +88,6 @@ export default function Restaurant() {
       </div>
     </div>
   );
-}
+};
+
+export default memo(Restaurant);
