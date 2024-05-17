@@ -75,7 +75,7 @@ export default function Foods() {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center md:flex-row flex-col">
         <h1 className="text-5xl font-bold text-center">Search for Food</h1>
         <div className="flex items-center justify-center gap-2 mb-2">
           <input
@@ -97,7 +97,7 @@ export default function Foods() {
       <div className="flex gap-4 mb-4">
      
 
-<div className="flex gap-4 mb-4">
+<div className="flex flex-wrap gap-4 mb-4">
   <select
     value={filters.cuisineType}
     onChange={handleFilterChange("cuisineType")}
