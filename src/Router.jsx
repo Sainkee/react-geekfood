@@ -3,6 +3,7 @@ import Qoute from "./components/Qoute.jsx";
 import HomePage from "./components/HomePage.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import Restaurent from "./components/Restaurent.jsx";
+import Foods from "./components/Foods.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
 
       { path: "qoute", element: <Qoute /> },
       { path: "restaurent", element: <Restaurent /> },
+      { path: "food", element: <Foods /> },
     ],
 
     errorElement: <h1>Not Found</h1>,

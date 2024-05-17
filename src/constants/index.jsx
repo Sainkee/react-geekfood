@@ -5,7 +5,7 @@ export const navItems = [
   { label: "Home", href: "/" },
   { label: "Qoute", href: "qoute" },
   { label: "Resturants", href: "restaurent" },
-  // { label: "Foods", href: "#" },
+  { label: "Foods", href: "food" },
   // { label: "Contact", href: "#" },
 ];
 
