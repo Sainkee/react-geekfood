@@ -7,14 +7,10 @@ const instance = axios.create({
   responseType: "application/json",
 });
 
-
-
-
-export const getFoodByName = async (name) => {
-
+export const getFoodByName = async (name = "egg") => {
   try {
-    const res = await instance.get(`?query=${name}`);
-  
+    const res = await instance.get(`?query=${name}&number=20`);
+
     return res.data;
   } catch (error) {
     console.log(error);
