@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <>
     <HeroSection />
-   <div className="w-[85vw] mx-auto">
+   <div className="w-[85vw] mx-auto ">
    <AboutSection />
     <Testimonial/>
    </div>

@@ -3,12 +3,9 @@ import { testimonial } from "../constants";
 export default function Testimonial() {
   return (
     <>
-      <div className="flex flex-wrap  justify-center mt-20">
+      <div className="flex flex-wrap  justify-center pb-10 mt-20">
         {testimonial.map((testimo, index) => (
-          <div
-            key={index}
-            className="w-full sm:w-1/2 lg:w-1/3 lg:px-4 p-2"
-          >
+          <div key={index} className="w-full sm:w-1/2 lg:w-1/3 lg:px-4 p-2">
             <div className=" bg-neutral-900 rounded-md p-6 text-md border gap-3 border-neutral-800 font-thin">
               <p> {testimo.text}</p>
             </div>

@@ -170,7 +170,7 @@ export default function Foods() {
           ))}
       </div>
       {filteredData.length > itemsPerPage && (
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center my-10">
           <ul className="flex space-x-2">
             {Array.from(
               { length: Math.ceil(filteredData.length / itemsPerPage) },

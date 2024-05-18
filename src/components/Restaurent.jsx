@@ -48,7 +48,7 @@ const Restaurant = () => {
         onChange={handleChange}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 pb-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {filteredData &&
           filteredData.map((item) => (
             <div key={item.id} className="bg-white shadow-md rounded-lg p-6 ">
