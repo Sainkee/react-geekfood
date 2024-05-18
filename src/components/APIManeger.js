@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://api.spoonacular.com/recipes/complexSearch",
+  baseURL: "https://api.spoonacular.com/recipes",
 
   headers: { "x-api-key": "f59077f07dcf41128cfdaf29bfa042c9" },
   responseType: "application/json",
@@ -9,8 +9,17 @@ const instance = axios.create({
 
 export const getFoodByName = async (name = "egg") => {
   try {
-    const res = await instance.get(`?query=${name}&number=20`);
+    const res = await instance.get(`/complexSearch?query=${name}&number=20`);
 
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getFoodById = async (id) => {
+  try {
+    const res = await instance.get(`/${id}/information`);
     return res.data;
   } catch (error) {
     console.log(error);

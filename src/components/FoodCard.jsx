@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function FoodCard({item}) {
+export default function FoodCard({item,onClick}) {
   return (
-    <div key={item.id} className="bg-white border text-center rounded-md">
+    <div key={item.id}  onClick={onClick} className="bg-white cursor-pointer border text-center rounded-md">
       <div className="overflow-hidden rounded-md">
         <img
           src={item.image}

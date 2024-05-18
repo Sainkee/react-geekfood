@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getFoodByName } from "./APIManeger";
 import FoodCard from "./FoodCard";
+import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
+import { useCallback } from "react";
 
 export default function Foods() {
+  const inputRef = useRef();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [food, setFood] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,32 +19,32 @@ export default function Foods() {
     priceRange: "",
     popularity: "",
   });
-  const [filteredData, setFilteredData] = useState([]);
 
-  const handleSearch = async () => {
+  const [filteredData, setFilteredData] = useState([]);
+  const [error, setError] = useState("");
+
+  const handleSearch = useCallback(async () => {
+    setSearchQuery(inputRef.current.value);
     try {
-      if (!searchQuery) return;
+      if (!inputRef.current.value) return;
       setLoading(true);
-      const result = await getFoodByName(searchQuery);
+      const result = await getFoodByName(inputRef.current.value);
       const parsedResult = JSON.parse(result);
       setFood(parsedResult.results);
       setLoading(false);
       setCurrentPage(1);
     } catch (error) {
       setLoading(false);
+      setError(error);
       console.error("Error fetching food data:", error);
     }
-  };
-
-  useEffect(() => {
-    handleSearch();
   }, []);
 
   useEffect(() => {
     applyFilters();
   }, [food, filters]);
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     const filtered = food.filter(
       (item) =>
         (!filters.cuisineType || item.cuisineType === filters.cuisineType) &&
@@ -49,26 +54,43 @@ export default function Foods() {
         (!filters.popularity || item.popularity === filters.popularity)
     );
     setFilteredData(filtered);
-  };
+  },[food, filters]);
 
-  const handleFilterChange = (filterName) => (event) => {
+  const handleFilterChange =useCallback( (filterName) => (event) => {
     setFilters({
       ...filters,
       [filterName]: event.target.value,
     });
-    setCurrentPage(1); // Reset to the first page when filters change
-  };
+    setCurrentPage(1);
+  });
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate =useCallback( (pageNumber) => setCurrentPage(pageNumber),[]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = useMemo(() => filteredData.slice(indexOfFirstItem, indexOfLastItem), [
+    filteredData,
+    indexOfFirstItem,
+    indexOfLastItem,
+  ]);
 
   if (loading) {
     return (
       <div className="fixed inset-0 text-6xl text-white font-bold bg-black bg-opacity-50 z-50 flex justify-center items-center">
         Loading...
+      </div>
+    );
+  }
+
+  const clickhandler = (id) => {
+    navigate(`/fooditem/${id}`);
+    console.log("clicked");
+  };
+
+  if (error) {
+    return (
+      <div className="fixed inset-0 text-6xl text-white font-bold bg-black bg-opacity-50 z-50 flex justify-center items-center">
+        {error}
       </div>
     );
   }
@@ -80,14 +102,12 @@ export default function Foods() {
         <div className="flex items-center justify-center gap-2 mb-2">
           <input
             type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            ref={inputRef}
             placeholder="Enter food name..."
-            className="my-10 text-white  bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
+            className="my-10 text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
           />
           <button
             onClick={handleSearch}
-            disabled={!searchQuery}
             className="my-10 text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
           >
             Search
@@ -95,56 +115,59 @@ export default function Foods() {
         </div>
       </div>
       <div className="flex gap-4 mb-4">
-     
-
-<div className="flex flex-wrap gap-4 mb-4">
-  <select
-    value={filters.cuisineType}
-    onChange={handleFilterChange("cuisineType")}
-    className="text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
-  >
-    <option value="">All Cuisines</option>
-    <option value="Italian">Italian</option>
-    <option value="Chinese">Chinese</option>
-    <option value="Mexican">Mexican</option>
-    <option value="Indian">Indian</option>
-  </select>
-  <select
-    value={filters.dietaryPreferences}
-    onChange={handleFilterChange("dietaryPreferences")}
-    className="text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
-  >
-    <option value="">All Dietary Preferences</option>
-    <option value="Vegetarian">Vegetarian</option>
-    <option value="Vegan">Vegan</option>
-    <option value="Gluten-Free">Gluten-Free</option>
-    <option value="Keto">Keto</option>
-  </select>
-  <select
-    value={filters.priceRange}
-    onChange={handleFilterChange("priceRange")}
-    className="text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
-  >
-    <option value="">All Price Ranges</option>
-    <option value="Low">Low</option>
-    <option value="Medium">Medium</option>
-    <option value="High">High</option>
-  </select>
-  <select
-    value={filters.popularity}
-    onChange={handleFilterChange("popularity")}
-    className="text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
-  >
-    <option value="">All Popularity Levels</option>
-    <option value="Popular">Popular</option>
-    <option value="New">New</option>
-  </select>
-</div>
-
+        <div className="flex flex-wrap gap-4 mb-4">
+          <select
+            value={filters.cuisineType}
+            onChange={handleFilterChange("cuisineType")}
+            className="text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
+          >
+            <option value="">All Cuisines</option>
+            <option value="Italian">Italian</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Indian">Indian</option>
+          </select>
+          <select
+            value={filters.dietaryPreferences}
+            onChange={handleFilterChange("dietaryPreferences")}
+            className="text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
+          >
+            <option value="">All Dietary Preferences</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Gluten-Free">Gluten-Free</option>
+            <option value="Keto">Keto</option>
+          </select>
+          <select
+            value={filters.priceRange}
+            onChange={handleFilterChange("priceRange")}
+            className="text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
+          >
+            <option value="">All Price Ranges</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+          <select
+            value={filters.popularity}
+            onChange={handleFilterChange("popularity")}
+            className="text-white bg-gray-800 border-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:focus:border-gray-400 px-4 py-2"
+          >
+            <option value="">All Popularity Levels</option>
+            <option value="Popular">Popular</option>
+            <option value="New">New</option>
+          </select>
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-full">
         {currentItems &&
-          currentItems.map((item) => <FoodCard key={item.id} item={item} />)}
+          currentItems.map((item) => (
+            <FoodCard
+              key={item.id}
+              item={item}
+              onClick={() => clickhandler(item.id)}
+            />
+          ))}
       </div>
       {filteredData.length > itemsPerPage && (
         <div className="flex justify-center mt-4">
