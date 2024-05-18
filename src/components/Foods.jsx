@@ -8,10 +8,10 @@ import { useCallback } from "react";
 export default function Foods() {
   const inputRef = useRef();
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState("");
+
   const [food, setFood] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(4);
+  const [itemsPerPage] = useState(8);
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
     cuisineType: "",
@@ -24,7 +24,6 @@ export default function Foods() {
   const [error, setError] = useState("");
 
   const handleSearch = useCallback(async () => {
-    setSearchQuery(inputRef.current.value);
     try {
       if (!inputRef.current.value) return;
       setLoading(true);
@@ -41,6 +40,10 @@ export default function Foods() {
   }, []);
 
   useEffect(() => {
+    handleSearch();
+  }, []);
+
+  useEffect(() => {
     applyFilters();
   }, [food, filters]);
 
@@ -54,9 +57,9 @@ export default function Foods() {
         (!filters.popularity || item.popularity === filters.popularity)
     );
     setFilteredData(filtered);
-  },[food, filters]);
+  }, [food, filters]);
 
-  const handleFilterChange =useCallback( (filterName) => (event) => {
+  const handleFilterChange = useCallback((filterName) => (event) => {
     setFilters({
       ...filters,
       [filterName]: event.target.value,
@@ -64,15 +67,14 @@ export default function Foods() {
     setCurrentPage(1);
   });
 
-  const paginate =useCallback( (pageNumber) => setCurrentPage(pageNumber),[]);
+  const paginate = useCallback((pageNumber) => setCurrentPage(pageNumber), []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = useMemo(() => filteredData.slice(indexOfFirstItem, indexOfLastItem), [
-    filteredData,
-    indexOfFirstItem,
-    indexOfLastItem,
-  ]);
+  const currentItems = useMemo(
+    () => filteredData.slice(indexOfFirstItem, indexOfLastItem),
+    [filteredData, indexOfFirstItem, indexOfLastItem]
+  );
 
   if (loading) {
     return (
